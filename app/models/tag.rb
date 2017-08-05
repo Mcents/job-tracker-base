@@ -6,4 +6,7 @@ class Tag < ApplicationRecord
     self.jobs.reduce(0){|sum, job| sum + job.salary} / self.jobs.count
   end
 
+  def job_count
+    self.jobs.count
+  end
 end
