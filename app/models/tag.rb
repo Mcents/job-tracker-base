@@ -2,22 +2,8 @@ class Tag < ApplicationRecord
   has_many :job_tags
   has_many :jobs, through: :job_tags
 
-#  def average_salary
- #   self.jobs.map do |job|
-  #    job.salary.map do |salary|
-   #     salary.inject{ |sum, el| sum + el }.to_f / job.size
-    #  end
-     #end
-  #
-  #end
-
   def average_salary
-    self.jobs.each do |job|
-      job.salary.all
-  end
+    self.jobs.reduce(0){|sum, job| sum + job.salary} / self.jobs.count
   end
 
-  def job_count
-    self.jobs.group(:job_id).count
-  end
 end
